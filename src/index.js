@@ -1,4 +1,6 @@
 import express from 'express';
+import matchRouter from './routes/matches.js';
+import { listMatchesQuerySchema } from './validation/matches.js';
 
 const app = express();
 const PORT = 8000;
@@ -8,10 +10,12 @@ app.use(express.json());
 
 // Root route
 app.get('/', (req, res) => {
-  res.json({ message: 'Welcome to the Sportz API!' });
+
 });
+
+app.use("/matches", matchRouter)
 
 // Start server
 app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
+    console.log(`Server is running on http://localhost:${PORT}`);
 });
