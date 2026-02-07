@@ -26,6 +26,8 @@ app.locals.broadcastMatchCreated = broadcastMatchCreated
 // Start server
 server.listen(PORT, HOST, () => {
     const baseUrl = HOST === '0.0.0.0' ? `http://localhost:${PORT}` : `http://${HOST}:${PORT}`
+    const wsUrl = new URL(baseUrl);
+    wsUrl.protocol = wsUrl.protocol === 'https:' ? 'wss:' : 'ws:';
     console.log(`Server is running on ${baseUrl}`);
-    console.log(`Server is running on ${baseUrl.replace("http", "ws")}/ws`);
+    console.log(`Server is running on ${wsUrl.toString()}/ws`);
 });
