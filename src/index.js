@@ -1,3 +1,6 @@
+import AgentAPI from 'apminsight';
+AgentAPI.config()
+
 import express from 'express';
 import http from "http"
 import matchRouter from './routes/matches.js';
@@ -21,7 +24,7 @@ app.get('/', (req, res) => {
     res.status(200).json({ status: 'ok' });
 });
 
-app.use(securityMiddleware())
+// app.use(securityMiddleware())
 
 app.use("/matches", matchRouter)
 app.use("/matches/:matchId/commentary", commentaryRouter)
