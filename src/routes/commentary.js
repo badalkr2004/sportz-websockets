@@ -10,7 +10,7 @@ export const commentaryRouter = Router({ mergeParams: true });
 const MAX_LIMIT = 100;
 
 /**
- * GET /matches/:id/commentary
+ * GET /matches/:matchId/commentary
  * List all commentary for a specific match
  */
 commentaryRouter.get("/", async (req, res) => {
@@ -50,7 +50,6 @@ commentaryRouter.get("/", async (req, res) => {
         console.error("Failed to fetch commentary:", error);
         res.status(500).json({
             error: "Failed to fetch commentary",
-            details: error.message
         });
     }
 });
@@ -63,9 +62,7 @@ commentaryRouter.get("/", async (req, res) => {
 commentaryRouter.post("/", async (req, res) => {
     try {
         // Validate match ID from URL params
-        console.log(req.params)
         const parsedParams = matchIdParamSchema.safeParse(req.params);
-        console.log(parsedParams)
 
         if (!parsedParams.success) {
             return res.status(400).json({
@@ -104,7 +101,6 @@ commentaryRouter.post("/", async (req, res) => {
         console.error("Failed to create commentary:", error);
         res.status(500).json({
             error: "Failed to create commentary",
-            details: error.message
         });
     }
 }); 
