@@ -14,7 +14,7 @@ export const listMatchesQuerySchema = z.object({
 
 // Validate match ID parameter
 export const matchIdParamSchema = z.object({
-  id: z.coerce.number().int().positive(),
+  matchId: z.coerce.number().int().positive(),
 });
 
 // Validate creating a new match
